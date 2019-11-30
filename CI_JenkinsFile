@@ -29,5 +29,6 @@ node {
       //docker.withRegistry('https://hub.docker.com/repository/docker/samy1317/retwis', 'ac465033-3cb2-4fc0-b4c8-c168e42833d2')
       sh 'docker push samy1317/retwis:0.1'
       build job: 'CD_JenkinsFile'
+      //test
    }
 }
