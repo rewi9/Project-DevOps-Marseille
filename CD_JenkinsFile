@@ -14,6 +14,7 @@ node {
    echo param1
       sh 'kubectl delete deployments --all' 
       sh 'kubectl delete service --all' 
+      sh "cd '${env.WORKSPACE}'/Project-DevOps-Marseille/"
       sh "sed -i -e 's/'${param1-1}'/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
      sh 'sleep 170'
