@@ -15,7 +15,7 @@ node {
       sh 'kubectl delete deployments --all' 
       sh 'kubectl delete service --all' 
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
-      sh "a=${param}"
+      sh "a=${param1}"
       sh 'echo "$(($a - 1))"'
       sh "sed -i -e 's/'${param1}-1'/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
