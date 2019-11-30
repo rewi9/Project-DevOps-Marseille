@@ -130,7 +130,7 @@ spec:
     spec:
       containers:
       - name: retwis
-        image: samy1317/retwis:0.1
+        image: samy1317/retwis:59
         resources:
           requests:
             cpu: 100m
