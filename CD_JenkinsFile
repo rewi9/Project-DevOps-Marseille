@@ -1,1 +1,23 @@
-ezezez
+node {
+   stage('Preparation Kube') {
+       git branch: 'master',
+          credentialsId: 'b6d61094-620c-4cd3-828f-429c9efc82a9',
+          url: 'https://github.com/rewi9/Project-DevOps-Marseille.git'
+          
+    withCredentials([file(credentialsId: 'b924d5d5-7018-4b25-beab-876163911d43', variable: 'GC_KEY')]) {
+    sh("gcloud auth activate-service-account cluster-admin@invertible-env-236706.iam.gserviceaccount.com --key-file=${GC_KEY}")  
+    }
+   sh 'gcloud container clusters get-credentials retwisj-cluster-kub --zone europe-west1-b --project invertible-env-236706'
+      
+   }
+   stage('Deploiement YAML') {
+      sh 'kubectl delete deployments --all' 
+      sh 'kubectl delete service --all' 
+      sh 'kubectl apply -f retwisj.yaml --validate=false'
+     // sh 'kubectl create -f retwisj.yaml --validate=false'
+     sh 'sleep 170'
+     //sh 'kubectl get service frontend | awk \'($4 !~ /^EXTERNAL/) {print $4}\' > titi'
+     sh 'kubectl get service frontend | awk \'($4 !~ /^EXTERNAL/) {print "http://"$4":8080/retwisj-0.1-SNAPSHOT"}\' > titi'
+     sh 'cat titi'
+   }
+}
