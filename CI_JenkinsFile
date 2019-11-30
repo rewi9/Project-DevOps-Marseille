@@ -26,9 +26,8 @@ node {
    stage('Docker') {
       sh 'docker build -t retwisjapp:1.0 .'
       sh 'docker tag retwisjapp:1.0 samy1317/retwis:0.1'
-      //ac465033-3cb2-4fc0-b4c8-c168e42833d2
       //docker.withRegistry('https://hub.docker.com/repository/docker/samy1317/retwis', 'ac465033-3cb2-4fc0-b4c8-c168e42833d2')
-      //sh 'docker login -u rewi9 -p tra83??sud'
       sh 'docker push samy1317/retwis:0.1'
+      build job: 'CD_JenkinsFile'
    }
 }
