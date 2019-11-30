@@ -16,8 +16,8 @@ node {
       sh 'kubectl delete service --all' 
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
       sh "a=${param1}"
-      sh 'echo "$((${param1} - 1))"'
-      sh "sed -i -e 's/'${((${param1} - 1))}'/'${param1}'/g' retwisj.yaml"
+      sh 'b="$((${param1} - 1))"'
+      sh "sed -i -e 's/b/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
      sh 'sleep 170'
      sh 'kubectl get service frontend | awk \'($4 !~ /^EXTERNAL/) {print "http://"$4":8080/retwisj-0.1-SNAPSHOT"}\' > titi'
