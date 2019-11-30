@@ -59,8 +59,7 @@ public class Post {
 	 * @param uid The uid to set.
 	 */
 	public void setUid(String author) {
-		//this.uid = author;
-		this.uid="AZERTYUIOP";
+		this.uid = author;
 	}
 
 	/**
