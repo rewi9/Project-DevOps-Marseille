@@ -21,7 +21,7 @@ node {
       sh 'kubectl delete services kubernetes'
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
       //REDIS_TEST = kubectl get service redis-master | awk '($1 !~ /^NAME/) {print $1}'
-      //DO THIS FOR ALL SERVICES
+      //DO THIS FOR ALL SERVICES DEPLOYED
       //if("$REDIS_TEST" == "redis-master") {
       sh "sed -i -e 's/59/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
