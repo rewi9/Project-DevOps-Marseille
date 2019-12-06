@@ -1,6 +1,6 @@
 node {
    def mvnHome
-   stage('Preparation') { // for display purposes
+   stage('Preparation') {
    discordSend description: "CI pipeline started", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    discordSend description: "Git preparation", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
       // Get some code from a GitHub repository
