@@ -7,6 +7,10 @@ metadata:
     tier: backend
     role: master
 spec:
+  initContainers:
+  - name: init-redis-master
+    image: busybox:1.28
+    command: ['sh', '-c', 'until nslookup redis-master; do echo "En attente de redis-master"; sleep 2; done;']
   ports:
   - port: 6379
     targetPort: 6379
