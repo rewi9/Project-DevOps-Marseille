@@ -22,7 +22,7 @@ node {
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
       sh "sed -i -e 's/59/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
-      discordSend description: "Wainting for ip address generation", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
+      discordSend description: "Waiting for ip address generation", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
      sh 'sleep 150'
      sh 'kubectl get service frontend | awk \'($4 !~ /^EXTERNAL/) {print "http://"$4":8080/retwisj-0.1-SNAPSHOT"}\' > ip'
      sh 'cat ip'
