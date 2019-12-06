@@ -12,7 +12,8 @@ node {
    }
    stage('Deploiement YAML') {
    echo param1
-      //sh 'kubectl delete deployments frontend' 
+      //sh 'kubectl delete deployments -all'
+      sh 'kubectl delete deployments frontend'
       sh 'kubectl delete services frontend'
       sh 'kubectl delete services kubernetes'
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
