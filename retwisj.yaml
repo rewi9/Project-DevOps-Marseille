@@ -108,6 +108,8 @@ spec:
   type: LoadBalancer
   ports:
   - port: 8080
+  type: LoadBalancer
+  loadBalancerIP: 34.76.166.138
   selector:
     app: retwis
     tier: frontend
