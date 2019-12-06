@@ -8,8 +8,7 @@ node {
           credentialsId: 'b6d61094-620c-4cd3-828f-429c9efc82a9',
           url: 'https://github.com/rewi9/Project-DevOps-Marseille.git'
       // Get the Maven tool.
-      // ** NOTE: This 'M3' Maven tool must be configured
-      // **       in the global configuration.           
+      // ** NOTE: This 'M3' Maven tool must be configured          
       mvnHome = tool 'M3'
    }
    stage('Build') {
