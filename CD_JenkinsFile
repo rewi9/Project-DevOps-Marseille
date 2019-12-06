@@ -16,9 +16,9 @@ node {
    discordSend description: "Deployment in progress", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    echo param1
       //sh 'kubectl delete deployments -all'
-      sh 'kubectl delete deployments frontend'
-      sh 'kubectl delete services frontend'
-      sh 'kubectl delete services kubernetes'
+      //sh 'kubectl delete deployments frontend'
+      //sh 'kubectl delete services frontend'
+      //sh 'kubectl delete services kubernetes'
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
       //REDIS_TEST = kubectl get service redis-master | awk '($1 !~ /^NAME/) {print $1}'
       //DO THIS FOR ALL SERVICES DEPLOYED 
