@@ -20,12 +20,12 @@ node {
       sh 'kubectl delete services frontend'
       sh 'kubectl delete services kubernetes'
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
-      REDIS_TEST = kubectl get service redis-master | awk '($1 !~ /^NAME/) {print $1}'
+      //REDIS_TEST = kubectl get service redis-master | awk '($1 !~ /^NAME/) {print $1}'
       //DO THIS FOR ALL SERVICES
       //if("$REDIS_TEST" == "redis-master") {
       sh "sed -i -e 's/59/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
-      discordSend description: "Data Base OK", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
+      //discordSend description: "Data Base is ready", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
      //} else{
      //discordSend description: "Data Base NOK Abording the deployments", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
      //autoCancelled=true
