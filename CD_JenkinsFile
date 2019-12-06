@@ -23,4 +23,7 @@ node {
      sh 'kubectl get service frontend | awk \'($4 !~ /^EXTERNAL/) {print "http://"$4":8080/retwisj-0.1-SNAPSHOT"}\' > titi'
      sh 'cat titi'
    }
+   stage('Discord') {
+   discordSend description: "Jenkins Pipeline Build", footer: "Footer Text", link: env.BUILD_URL, result: currentBuild.currentResult, title: RetwisjApp, webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
+   }
 }
