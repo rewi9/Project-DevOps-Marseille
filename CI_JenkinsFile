@@ -30,7 +30,7 @@ node {
       sh 'docker build -t retwisjapp:1.0 .'
       sh 'docker tag retwisjapp:1.0 samy1317/retwis:$BUILD_NUMBER'
       //docker.withRegistry('https://hub.docker.com/repository/docker/samy1317/retwis', 'ac465033-3cb2-4fc0-b4c8-c168e42833d2')
-      //test2
+      //test23
       sh 'docker push samy1317/retwis:$BUILD_NUMBER'
       build job: 'CD-retwisj', parameters: [string(name:'param1',value:env.BUILD_NUMBER)]    
    }
