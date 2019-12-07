@@ -1,4 +1,5 @@
 node {
+try{
    stage('Preparation Kube') {
    discordSend description: "CD pipeline started", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    discordSend description: "Preparation Kube in progress", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
@@ -25,4 +26,10 @@ node {
    discordSend description: "$LINK", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    discordSend description: "Deployment finished", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    }
+   currentBuild.result='SUCCES'
+   }
+   catch (Exception err){
+   currentBuild.result='FAILURE'
+   }
+   discordSend description: "${currentBuild.result}", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"   
 }
