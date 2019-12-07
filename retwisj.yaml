@@ -11,6 +11,12 @@ spec:
   - name: init-redis-master
     image: busybox:1.28
     command: ['sh', '-c', 'until nslookup redis-master; do echo "En attente de redis-master"; sleep 2; done;']
+    volumeMounts:
+    - name: redis-storage
+      mountPath: /data/redis
+  volumes:
+    - name: redis-storage
+      emptyDir: {}
   ports:
   - port: 6379
     targetPort: 6379
