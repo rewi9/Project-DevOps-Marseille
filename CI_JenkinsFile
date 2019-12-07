@@ -18,18 +18,18 @@ node {
          
       withEnv(["MVN_HOME=$mvnHome"]) {
          if (isUnix()) {
-            sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            sh '"$MVN_HOME/bin/mvn" -Dmaven clean package'
             } else {
-            bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+            bat(/"%MVN_HOME%\bin\mvn" -Dmaven clean package/)
             }
          }
        }
    }
-   //stage('Unit Test') {
-      //junit '*/target/surefire-reports/TEST-*.xml'
-      //archiveArtifacts 'target/surefire-reports/*.txt'
-      //discordSend description: "Unit test in progress", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
-    //}
+   stage('Unit Test') {
+      junit '*/target/surefire-reports/TEST-*.xml'
+      archiveArtifacts 'target/surefire-reports/*.txt'
+      discordSend description: "Unit test in progress", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
+    }
    stage('Docker') {
    discordSend description: "Docker deployment in progress", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
       sh 'docker build -t retwisjapp:1.0 .'
