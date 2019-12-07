@@ -5,32 +5,17 @@ node {
        git branch: 'master',
           credentialsId: 'b6d61094-620c-4cd3-828f-429c9efc82a9',
           url: 'https://github.com/rewi9/Project-DevOps-Marseille.git'
-          
     withCredentials([file(credentialsId: 'b924d5d5-7018-4b25-beab-876163911d43', variable: 'GC_KEY')]) {
     sh("gcloud auth activate-service-account cluster-admin@invertible-env-236706.iam.gserviceaccount.com --key-file=${GC_KEY}")  
     }
    sh 'gcloud container clusters get-credentials retwisj-cluster-kub --zone europe-west1-b --project invertible-env-236706'
-      
    }
    stage('Deploiement YAML') {
    discordSend description: "Deployment in progress", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
-   echo param1
-      //sh 'kubectl delete deployments -all'
-      //sh 'kubectl delete deployments frontend'
-      //sh 'kubectl delete services frontend'
-      //sh 'kubectl delete services kubernetes'
       sh "cd /var/lib/jenkins/workspace/CD-retwisj/"
-      //REDIS_TEST = kubectl get service redis-master | awk '($1 !~ /^NAME/) {print $1}'
-      //DO THIS FOR ALL SERVICES DEPLOYED 
-      //if("$REDIS_TEST" == "redis-master") {
       sh "sed -i -e 's/59/'${param1}'/g' retwisj.yaml"
       sh 'kubectl apply -f retwisj.yaml --validate=false'
-      //discordSend description: "Data Base is ready", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
-     //} else{
-     //discordSend description: "Data Base NOK Abording the deployments", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
-     //autoCancelled=true
-     //}
-     discordSend description: "Waiting for ip address generation", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
+     discordSend description: "Waiting for ip address generation - 50 secondes", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
      sh 'sleep 50'
      sh 'kubectl get service frontend | awk \'($4 !~ /^EXTERNAL/) {print "http://"$4":8080/retwisj-0.1-SNAPSHOT"}\' > ip'
      sh 'cat ip'
@@ -40,5 +25,4 @@ node {
    discordSend description: "$LINK", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    discordSend description: "Deployment finished", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
    }
-   discordSend description: "${env.BUILD_STATUS}", webhookURL: "https://discordapp.com/api/webhooks/652441372648931348/iTGabKcf_Bq6C_hXiiwtg_KOYpEW-OA_RcdD5v7PCcKjERCoxT4PcYXTZntQTyixLZy6"
 }
